@@ -5,28 +5,31 @@
 // Se não, retorna reject com bolo queimado ou cru
 // finally, criatividade de voces.
 
-
 function preparoBolo(ms) { 
-let tempopreparo = 4000
-    return new Promise(
-        (resolve, reject) => { 
-            setTimeout(() => { 
+    const tempoIdeal = 4000;
+
+    return new Promise((resolve, reject) => { 
+        
+        setTimeout(() => { 
             
-                if(tempopreparo = 4000  ) {
-                    console.log
-                    resolve(`bolo assou com sucesso no tempo de ${ms}ms`);
-                } else {
-                    console.log
-                    reject(new Error('queimado ou cru'));
-                }
-         }, 
-            ms); 
-        });
+            if (ms === tempoIdeal) {
+                resolve(` assou com sucesso no tempo de ${ms}ms`);
+            
+            } else if (ms < tempoIdeal) {
+                reject(new Error(' Bolo ficou cru'));
+            
+            } else {
+                reject(new Error(' Bolo queimou'));
+            }
+
+        }, ms); 
+    });
 }
+
 preparoBolo(4000)
     .then((resultado) => console.log(resultado))
-    .catch((erro) => console.error(erro))
-    .finally(() => console.log('Finalizado'));
+    .catch((erro) => console.error(erro.message))
+    .finally(() => console.log(' Processo finalizado!'));
 
 
 // Criar uma função que recebe um número aleatório, gerem o numero aleatorio
@@ -34,21 +37,26 @@ preparoBolo(4000)
 // se o numero for maior que 5, retorna resolve, se não retorna reject
 // usem o finally livremente.
 
-/*function esperarTempo(ms) { 
-    return new Promise(
-        (resolve, reject) => { 
-            setTimeout(() => { 
-                console.log("antes")
-                 resolve(`Esperou ${ms}ms`);
-                console.log("depois") 
-                // Para simular erro: 
-                reject(new Error('Falhou'));
-         }, 
-            ms); 
-        });
+function verificarNumero() {
+
+    return new Promise((resolve, reject) => {
+
+        const numeroAleatorio = Math.floor(Math.random() * 10); 
+        // Gera número de 0 a 9
+
+        console.log(`Número gerado: ${numeroAleatorio}`);
+
+        if (numeroAleatorio > 5) {
+            resolve(` Número ${numeroAleatorio} é maior que 5`);
+        } else {
+            reject(new Error(` Número ${numeroAleatorio} é menor ou igual a 5`));
+        }
+
+    });
+
 }
-esperarTempo(2000)
+
+verificarNumero()
     .then((resultado) => console.log(resultado))
-    .catch((erro) => console.error(erro))
-    .finally(() => console.log('Finalizado'));
-*/ 
+    .catch((erro) => console.error(erro.message))
+    .finally(() => console.log(" Processo finalizado!"));
