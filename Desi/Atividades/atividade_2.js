@@ -48,3 +48,19 @@ fila.enqueue({nome:"Terezinha", isEldery:true})
 
 console.table(fila.mostrarFila())
 
+
+// Atividade2. PILHAS (Stack – LIFO)
+/*Exercício 3 — Validador de Parênteses
+Enunciado
+Verifique se uma expressão possui parênteses balanceados:
+((a+b)*c)
+Discussão Guiada
+Quando empilha?
+Quando desempilha?
+Como detecta erro?
+Complexidade Esperada
+Operação Complexidade
+Percorrer string O(n)
+push/pop O(1)
+Complexidade total: O(n)*/
+
