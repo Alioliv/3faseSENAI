@@ -1,38 +1,65 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
+
+import styles from './Card.module.css'
 
 export const CardApi = () => {
-    
-    const [users, setUsers] = useState([])
-    // const [filter]  // Estado que poderia ser usado para filtro futuramente
 
-    useEffect(() => {
+    // let contador = 0
+    // const [contador, setContador] = useState(0)
 
+    // const incrementaValor = ()=>{
+    //     // contador++
+    //     setContador(prev => prev +1)
+
+    //     console.log("contador",contador)
+    // }
+
+
+    const [users,setUsers] = useState([])
+
+    const [filtro, setFiltro] = useState('')
+   
+
+    useEffect(()=>{
         fetch('https://jsonplaceholder.typicode.com/users')
-         .then((res) => res.json()) // Converte a resposta para JSON
-         .then((data) => setUsers(data)) // Salva os usuários no estado
+        .then(res => res.json())
+        .then(data => setUsers(data))
+        // .then(data => setUsers(data))
+       
+        const filteredUsers = users.filter(
+            user => user.name.toLowerCase().includes(filtro.toLowerCase()
 
-        // console.log('')
-        // console.log('data', data)
-        // .then((json) => console.log(json));
-
-    }, []) // Executa apenas quando o componente carregar
+        ))
+        setUsers(filteredUsers) 
+    },[])
 
 
-    return ( 
+  return (
     <>
-        <div className='style.cardContaApi'>
+
+        <input
+            type='text'
+            className={styles.input}
+            placeholder='Filtrar por nome...'
+            value={filtro}
+            onChange={(e) => setFiltro(e.target.value)}
+        />
+        <div className={styles.cardContainerApi}>
             {
-                users.map((user) =>(
-                    <div className='style.card' key={user.id}> 
+                users.map((user)=>(
+                    <div className={styles.card} key={user.id}>
                         <h2>{user.name}</h2>
                         <p>{user.email}</p>
                         <p>{user.address.street}</p>
                     </div>
                 ))
             }
-
         </div>
 
+
+        {/* <p>{contador}</p>
+        <button onClick={incrementaValor}>Add</button> */}
     </>
-    )
+  )
 }
+

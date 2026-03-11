@@ -1,4 +1,4 @@
-class Queue {
+/*class Queue {
 
     constructor() {
         this.array = new Array()
@@ -46,7 +46,7 @@ fila.enqueue({nome:"Sebastião", isEldery:true})
 fila.enqueue({nome:"Jertrude", isEldery:true})
 fila.enqueue({nome:"Terezinha", isEldery:true})
 
-console.table(fila.mostrarFila())
+console.table(fila.mostrarFila())*/
 
 
 // Atividade2. PILHAS (Stack – LIFO)
@@ -63,4 +63,39 @@ Operação Complexidade
 Percorrer string O(n)
 push/pop O(1)
 Complexidade total: O(n)*/
+
+
+function validarBalanceamento(expressao) {
+    const pilha = [];
+    let topoPilhas = -1; // começar em -1 para indicar que a pilha está vazia, e o topo é o índice do último elemento adicionado. Quando a pilha estiver vazia, topoPilhas será -1.
+    const pares = { 
+        '(': ')', 
+        '[': ']',
+        '{': '}'
+    };
+
+    const quemAbre = new Set(["(", "[", "{"])
+
+    for (const caractere of expressao) {
+        if (quemAbre.has (caractere)){
+           // pilha.push(caractere) 
+            topoPilhas++
+            console.log(pilha)
+        }
+        else if (caractere in pares) {
+            if (pilha.length === 0) return false    
+           // const topo = pilha.pop()
+            pilha[topoPilhas] = -1 // "remover" o elemento do topo da pilha, marcando-o como -1 (ou qualquer valor que indique que foi removido)
+            const topo = pilha[topoPilhas]
+                topoPilhas--
+            if (topo !== pares[caractere]) return false
+         }
+    }
+    return pilha.length === 0;
+    
+}
+
+console.log(validarBalanceamento("((a+b)*c)"))  
+
+//console.log(validarBalanceamento("{[(a + b) * c]}")) 
 

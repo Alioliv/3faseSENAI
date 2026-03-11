@@ -1,43 +1,45 @@
-import React from 'react'
-import Card from '../../components/Card/Card'
-
-import styles from './Body.module.css'
+import React from "react";
+import Card from "../../components/Card/Card";
+import { CardApi } from "../../components/Card/CardApi";
+import styles from "./Body.module.css";
 
 const Body = () => {
-  //array com nomes diferentes
 
+  // array de usuários
   const usuarios = [
-    {nome:"Ana", idade: 22, cidade:"São José"},
-    {nome:"Bruno", idade: 30, cidade:"Florianópolis"},
-    {nome:"João", idade: 35, cidade:"Palhoça"},
-    {nome:"Ana", idade: 22, cidade:"São José"},
-    {nome:"Bruno", idade: 30, cidade:"Florianópolis"},
-    {nome:"João", idade: 35, cidade:"Palhoça"},
-    {nome:"Ana", idade: 22, cidade:"São José"},
-    {nome:"Bruno", idade: 30, cidade:"Florianópolis"},
-    {nome:"João", idade: 35, cidade:"Palhoça"},
-  ]
+    { nome: "Ana", idade: 22, cidade: "São José" },
+    { nome: "Bruno", idade: 30, cidade: "Florianópolis" },
+    { nome: "João", idade: 35, cidade: "Palhoça" },
+    { nome: "Ana", idade: 22, cidade: "São José" },
+    { nome: "Bruno", idade: 30, cidade: "Florianópolis" },
+    { nome: "João", idade: 35, cidade: "Palhoça" },
+    { nome: "Ana", idade: 22, cidade: "São José" },
+    { nome: "Bruno", idade: 30, cidade: "Florianópolis" },
+    { nome: "João", idade: 35, cidade: "Palhoça" },
+  ];
 
   return (
-    <>
-       <main className={styles.body}>
-            <h2>Usuários Cadastrados</h2>
-            <div className={styles.cardContainer}>
-                {usuarios.map((usuario, index) => (
-                    <Card
-                        key={index}
-                        nome={usuario.nome}
-                        idade={usuario.idade}
-                        cidade={usuario.cidade}
-                    />
-                ))}
-            </div>
+    <main className={styles.body}>
+      
+      <h2>Usuários Cadastrados</h2>
 
-            <h3>Usuários vidos da API</h3>
-            <CardApi/>
-       </main>
-    </>
-  )
-}
+      <div className={styles.cardContainer}>
+        {usuarios.map((usuario, index) => (
+          <Card
+            key={index}
+            nome={usuario.nome}
+            idade={usuario.idade}
+            cidade={usuario.cidade}
+          />
+        ))}
+      </div>
 
-export default Body
+      <h3>Usuários vindos da API</h3>
+
+      <CardApi />
+
+    </main>
+  );
+};
+
+export default Body;
