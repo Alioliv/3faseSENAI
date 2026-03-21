@@ -1,0 +1,35 @@
+{
+  "posts": [
+    { 
+      "id": "1", 
+      "imagem": "https://placehold.co/300x200/png",
+      "title": "a title", "views": 100 },
+      "description": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system",
+      "views": 70
+    }
+    { 
+      "id": "2",
+      "imagem": "https://placehold.co/300x200/png",
+      "title": "another title", "views": 200 }
+  ],
+  "comments": [
+    { "id": "1", "text": "a comment about post 1", "postId": "1" },
+    { "id": "2", "text": "another comment about post 1", "postId": "1" }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "users": [
+    {
+        "id": "1", 
+        "name": "João",
+        "idade": "27"
+    },
+    {
+        "id": "2", 
+        "name": "Maria",
+        "idade": "30"
+    }
+ ]   
+  
+}
