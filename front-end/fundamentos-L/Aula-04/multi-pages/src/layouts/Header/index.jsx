@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router'
 import { useAuth } from '../../context/AuthContext'
 
 
@@ -9,19 +9,38 @@ export const Header = () => {
   const navigate = useNavigate()
 
   const handleLogout = () => {
-    logout()
-    navigate('/')
-  } 
+    logout();
+    navigate("/")
+  }
 
   return (
     <header className='flex items-center justify-between p-4 bg-gray-200'>
-      
       <nav className='space-x-4'>
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) =>
+            isActive ? "text-blue-600 font-bold" : "text-gray-800"
+          }
+        >
+          Home
+        </NavLink>
+
+        <NavLink
+          to="/sobre"
+          end
+          className={({ isActive }) =>
+            isActive ? "text-blue-600 font-bold" : "text-gray-800"
+          }
+        >
+          Sobre
+        </NavLink>
+
         <NavLink
           to="/blog"
           end
           className={({ isActive }) =>
-            isActive ? 'text-blue-600 font-bold' : 'text-gray-800'
+            isActive ? "text-blue-600 font-bold" : "text-gray-800"
           }
         >
           Blog
@@ -29,27 +48,23 @@ export const Header = () => {
       </nav>
 
       <div>
-        {user ? (
-          <>
-            <span className='mr-4'>Olá, {user.name}</span>
-            <button 
-              onClick={handleLogout} 
-              className='px-4 py-2 bg-red-500 text-white rounded'
+        {
+          user ? (
+            <>
+              <span className='mr-4'>Olá, {user.email}</span>
+              <button onClick={handleLogout} className='bg-red-500 text-white px-3 py-1 rounded'>Logout</button>
+            </>
+          ) : (
+            <NavLink
+              to="/login"
+              className="bg-blue-600 text-white px-3 py-1 rounded"
             >
-              Logout
-            </button>
-          </>
-        ) : (
-          <NavLink
-            to="/login"
-            className="bg-blue-600 text-white px-3 py-1 rounded"
-          >
-            Login
-          </NavLink>
-        )}
+              Login
+            </NavLink>
+          )
+        }
       </div>
 
-    </header> 
+    </header>
   )
 }
-

@@ -1,28 +1,41 @@
-import {createContext,useContext, useState} from 'react';
-import React from 'react';  
+import { createContext, useContext, useEffect, useState } from "react"
 
 const AuthContext = createContext()
 
+export const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
 
-export const AuthProvider = ({children}) => {
-    const [user, setUser] = useState(null)
 
+    useEffect(() => {
+        const email = localStorage.getItem("email")
+        if (email) {
+            setUser({ email })
+        }
+    }, [])
+
+    const setUserAndLocalStorage = (email) => {
+        localStorage.setItem("email", email)
+        setUser({ email })
+    }   
+    
+
+    
     const login = (email) => {
-        setUser({email}) // passando como objeto para pegar mais dados no futuro, caso preciso: ex: setUser({email, name, id})
+        setUser({ email }) // passando como objeto para pegar mais dados no futuro, caso preciso. Ex: setUser({email, name:"Joao",role:"admin"})
     }
 
     const logout = () => {
+        localStorage.removeItem("email")
         setUser(null)
-    }   
-
+    }
 
     return (
         <AuthContext.Provider value={{ user, login, logout }}>
-            {children} {/* children é o conteúdo que vai ser envolvido pelo AuthProvider, ou seja, os componentes que precisam acessar o contexto de autenticação. */}
+            {children}
         </AuthContext.Provider>
     )
+
 }
 
 
-export const useAuth = () =>  useContext(AuthContext) // useContext é um hook do React que permite acessar o valor do contexto AuthContext em qualquer componente que esteja envolvido pelo AuthProvider.
-
+export const useAuth = () => useContext(AuthContext)

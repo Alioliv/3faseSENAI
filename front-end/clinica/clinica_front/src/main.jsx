@@ -1,20 +1,32 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-// import App from './App.jsx'
+
+//react router
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
+
+//toastify
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello World</div>,
+    element: <Login />
   },
+  {
+    path: "/dashboard",
+    element: <Dashboard />
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-     <RouterProvider router={router} />,
-    {/* <App /> */}
+    <ToastContainer />
+    <RouterProvider router={router} />
   </StrictMode>,
 )

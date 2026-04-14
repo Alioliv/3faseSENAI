@@ -1,11 +1,9 @@
 import React from 'react'
 
 export const Footer = () => {
-  return (
-    <footer className='bg-amber-600'>
-       <h1> Footer</h1>
-    </footer>
-  )
+    return (
+        <footer className='bg-amber-800'>
+            <h3>Footer</h3>
+        </footer>
+    )
 }
-
-
